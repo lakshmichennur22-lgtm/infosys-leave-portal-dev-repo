@@ -1,15 +1,20 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'node18'
-    }
-
     stages {
 
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('Verify Node & NPM') {
+            steps {
+                sh '''
+                    node -v
+                    npm -v
+                '''
             }
         }
 
@@ -31,8 +36,9 @@ pipeline {
             }
         }
     }
+}
 
-    post {
+post {
         success {
             echo '🚀 CI Deployment successful'
         }
@@ -40,4 +46,4 @@ pipeline {
             echo '❌ CI Deployment failed'
         }
     }
-}
+
