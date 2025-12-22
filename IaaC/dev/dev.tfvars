@@ -1,10 +1,8 @@
-project     = "infsys"
-application = "hr-em-portal"
+project     = "infosys-leave"
+application = "portal"
 
 environment    = "dev"
 location       = "us-east-1"
-location_short = "cus"
+location_short = "use"
 
-blockcode = "ABCD1015"
-
-admin_password = "YourStrongP@ssw0rd!"
+blockcode = "ABCD1001"
