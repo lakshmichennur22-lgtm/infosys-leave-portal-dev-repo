@@ -15,7 +15,7 @@ pipeline {
                         terraform plan -var-file=dev/dev.tfvars
                         terraform apply -auto-approve -var-file=dev/dev.tfvars
                     '''
-                }
+                    }
             }
         }
     }
