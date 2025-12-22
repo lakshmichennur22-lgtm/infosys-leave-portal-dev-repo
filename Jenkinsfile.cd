@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
-        S3_BUCKET = 'bus-booking-portal-dev-use-s3-bucket'
+        S3_BUCKET = 'infosys-leave-portal-dev-use-s3-bucket'
     }
 
     stages {
@@ -11,7 +11,7 @@ pipeline {
         stage('Download Build Artifacts') {
             steps {
                 copyArtifacts(
-                    projectName: 'bus-booking-frontend-ci',
+                    projectName: 'Infosys-leave-frontend-ci',
                     selector: lastSuccessful()
                 )
             }
