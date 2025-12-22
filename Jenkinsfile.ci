@@ -38,12 +38,4 @@ pipeline {
     }
 }
 
-post {
-        success {
-            echo '🚀 CI Deployment successful'
-        }
-        failure {
-            echo '❌ CI Deployment failed'
-        }
-    }
 
