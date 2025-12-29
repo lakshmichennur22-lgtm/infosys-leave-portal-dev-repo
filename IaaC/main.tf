@@ -141,7 +141,7 @@ resource "aws_ecs_cluster" "frontend_cluster" {
 }
 
 resource "aws_iam_role" "ecs_task_role" {
-  name = "$local.name_prefix}-ecs-task-execution-role"
+  name = "${ocal.name_prefix}-ecs-task-execution-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
