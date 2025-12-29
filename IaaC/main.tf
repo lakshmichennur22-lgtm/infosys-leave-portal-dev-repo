@@ -85,8 +85,8 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id = aws_vpc.frontend_vpc.id
 
   ingress {
-    from_port       = 80
-    to_port         = 80
+    from_port       = 3000
+    to_port         = 3000
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_sg.id]
   }
@@ -111,14 +111,14 @@ resource "aws_lb" "frontend_alb" {
 
 resource "aws_lb_target_group" "frontend_tg" {
   name = substr("${local.name_prefix}-tg-", 0, 20)
-  port        = 80
+  port        = 3000
   protocol    = "HTTP"
   vpc_id      = aws_vpc.frontend_vpc.id
   target_type = "ip"
 
   health_check {
     path = "/"
-    port = "80"
+    port = "traffic-port"
   }
 }
 
@@ -179,7 +179,7 @@ resource "aws_ecs_task_definition" "frontend_task" {
       image     = "997948075617.dkr.ecr.us-east-1.amazonaws.com/bank_frontend_portal:latest"
       essential = true
       portMappings = [{
-        containerPort = 80
+        containerPort = 3000
         protocol      = "tcp"
       }]
     }
@@ -205,7 +205,7 @@ resource "aws_ecs_service" "frontend_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.frontend_tg.arn
     container_name   = "frontend"
-    container_port   = 80
+    container_port   = 3000
   }
 
 
